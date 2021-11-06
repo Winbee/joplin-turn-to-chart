@@ -148,7 +148,13 @@ const baseConfig = {
       },
     ],
   },
-  plugins: [new webpack.IgnorePlugin(/canvas/)],
+  plugins: [
+    new webpack.IgnorePlugin(/canvas/),
+    // Ugly hack to remove the usage of SharedArrayBuffer
+    new webpack.DefinePlugin({
+      'SharedArrayBuffer.prototype': 'ArrayBuffer.prototype',
+    }),
+  ],
 };
 
 const pluginConfig = Object.assign({}, baseConfig, {
