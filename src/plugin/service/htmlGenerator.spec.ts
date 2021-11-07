@@ -75,16 +75,16 @@ describe('htmlGenerator', () => {
               name: 'serie1',
               unit: 'unit1',
               pointList: [
-                { x: new Date('2021-01-02'), y: 2 },
-                { x: new Date('2021-03-02'), y: 4 },
-                { x: new Date('2021-04-02'), y: 8 },
+                { x: new Date('2021-01-02T12:00:00.000Z'), y: 2 },
+                { x: new Date('2021-03-02T12:00:00.000Z'), y: 4 },
+                { x: new Date('2021-04-02T12:00:00.000Z'), y: 8 },
               ],
             },
           ],
           xAxis: {
             label: 'xLabel',
             dataType: DataType.date,
-            domain: [new Date('2021-01-02'), new Date('2021-04-02')],
+            domain: [new Date('2021-01-02T12:00:00.000Z'), new Date('2021-04-02T12:00:00.000Z')],
           },
           yAxis: {
             label: 'unit1',
