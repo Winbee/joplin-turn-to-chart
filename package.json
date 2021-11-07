@@ -1,6 +1,7 @@
 {
   "name": "joplin-plugin-turn-to-chart",
   "version": "1.0.0",
+  "homepage": "https://github.com/Winbee/joplin-turn-to-chart",
   "scripts": {
     "dist": "webpack --joplin-plugin-config buildMain && webpack --joplin-plugin-config buildExtraScripts && webpack --joplin-plugin-config createArchive",
     "prepare": "npm run dist",
