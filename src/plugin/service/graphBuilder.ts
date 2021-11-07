@@ -79,14 +79,14 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
     switch (graphData.xAxis.dataType) {
       case DataType.number: {
         x = +currentRow[0];
-        xMin = xMin ? Math.min(x, xMin as number) : x;
-        xMax = xMax ? Math.max(x, xMax as number) : x;
+        xMin = xMin == null ? x : Math.min(x, xMin as number);
+        xMax = xMax == null ? x : Math.max(x, xMax as number);
         break;
       }
       case DataType.date: {
         x = new Date(currentRow[0]);
-        xMin = xMin ? (xMin < x ? xMin : x) : x;
-        xMax = xMax ? (xMax < x ? x : xMax) : x;
+        xMin = xMin == null ? x : xMin < x ? xMin : x;
+        xMax = xMax == null ? x : xMax < x ? x : xMax;
         break;
       }
       case DataType.category: {
@@ -106,8 +106,8 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
         y,
       };
       graphData.serieList[columnIndex - 1].pointList.push(newPoint);
-      yMin = yMin ? Math.min(y, yMin) : y;
-      yMax = yMax ? Math.max(y, yMax) : y;
+      yMin = yMin == null ? y : Math.min(y, yMin);
+      yMax = yMax == null ? y : Math.max(y, yMax);
     }
   }
 

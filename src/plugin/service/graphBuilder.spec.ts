@@ -6,7 +6,7 @@ describe('graphBuilder', () => {
   describe('buildGraphData', () => {
     const cases: { title: string; input: TableData; expectedOutput: GraphData }[] = [
       {
-        title: 'one serie with x-axis starting at zero',
+        title: 'one number serie with x-axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
           delimiter: [':------', '------'],
@@ -41,7 +41,7 @@ describe('graphBuilder', () => {
         },
       },
       {
-        title: 'one serie with y-axis starting at zero',
+        title: 'one number serie with y-axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
           delimiter: ['------', ':------'],
@@ -76,7 +76,7 @@ describe('graphBuilder', () => {
         },
       },
       {
-        title: 'one serie with both axis starting at zero',
+        title: 'one number serie with both axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
           delimiter: [':------', ':------'],
@@ -111,7 +111,7 @@ describe('graphBuilder', () => {
         },
       },
       {
-        title: 'one serie with x-with-unit',
+        title: 'one number serie with x-with-unit',
         input: {
           headList: ['xLabel (unit)', 'serie1 (kilo)'],
           delimiter: ['------', '------'],
@@ -274,6 +274,63 @@ describe('graphBuilder', () => {
             label: 'kilo',
             dataType: DataType.number,
             domain: [2, 8],
+          },
+        },
+      },
+      {
+        title: 'three number series',
+        input: {
+          headList: ['xLabel', 'serie1', 'serie2', 'serie3'],
+          delimiter: ['------', '------', '------', '------'],
+          rowList: [
+            ['1', '2', '1', '0'],
+            ['2', '1', '1', '4'],
+            ['3', '0', '4', '1'],
+            ['4', '5', '2', '3'],
+          ],
+        },
+        expectedOutput: {
+          serieList: [
+            {
+              name: 'serie1',
+              unit: undefined,
+              pointList: [
+                { x: 1, y: 2 },
+                { x: 2, y: 1 },
+                { x: 3, y: 0 },
+                { x: 4, y: 5 },
+              ],
+            },
+            {
+              name: 'serie2',
+              unit: undefined,
+              pointList: [
+                { x: 1, y: 1 },
+                { x: 2, y: 1 },
+                { x: 3, y: 4 },
+                { x: 4, y: 2 },
+              ],
+            },
+            {
+              name: 'serie3',
+              unit: undefined,
+              pointList: [
+                { x: 1, y: 0 },
+                { x: 2, y: 4 },
+                { x: 3, y: 1 },
+                { x: 4, y: 3 },
+              ],
+            },
+          ],
+          xAxis: {
+            label: 'xLabel',
+            dataType: DataType.number,
+            domain: [1, 4],
+          },
+          yAxis: {
+            label: '',
+            dataType: DataType.number,
+            domain: [0, 5],
           },
         },
       },

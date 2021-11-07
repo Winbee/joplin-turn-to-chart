@@ -184,8 +184,6 @@ const pluginConfig = Object.assign({}, baseConfig, {
               // already copied into /dist so we don't copy them.
               '**/*.ts',
               '**/*.tsx',
-              // We don't need to copy the test assets
-              '**/*.html',
             ],
           },
         },

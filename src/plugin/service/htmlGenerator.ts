@@ -135,7 +135,9 @@ export const generateHtml = (graphData: GraphData): string => {
       .style('height', '1em')
       .style('border-radius', '50%')
       .style('background-color', color(item.name));
-    oneLegendItem.append('xhtml:div').text(item.unit ? `${item.name} (${item.unit})` : item.name);
+    oneLegendItem
+      .append('xhtml:div')
+      .text(item.unit == null ? item.name : `${item.name} (${item.unit})`);
   });
 
   return rootFragment.firstChild.outerHTML;
