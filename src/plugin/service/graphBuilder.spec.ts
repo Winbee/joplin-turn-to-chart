@@ -140,7 +140,7 @@ describe('graphBuilder', () => {
       {
         title: 'one time-serie',
         input: {
-          headList: ['xLabel (date)', 'serie1 (kilo)'],
+          headList: ['xLabel [date]', 'serie1 (kilo)'],
           delimiter: ['------', ':------'],
           rowList: [
             ['2021-01-02', '2'],
@@ -210,7 +210,7 @@ describe('graphBuilder', () => {
       {
         title: 'one category serie',
         input: {
-          headList: ['xLabel (category)', 'serie1 (kilo)'],
+          headList: ['xLabel [category]', 'serie1 (kilo)'],
           delimiter: ['------', '------'],
           rowList: [
             ['category 1', '2'],

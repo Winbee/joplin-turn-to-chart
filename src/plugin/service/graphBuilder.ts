@@ -1,7 +1,8 @@
 import { DataType, GraphData, Point, Serie, XType } from '../model/GraphData';
 import { TableData } from '../model/TableData';
 
-const LABEL_WITH_UNIT_REGEX = /(.*?)\((.*?)\)/;
+const X_LABEL_REGEX = /(.*?)\[(.*?)\]/;
+const Y_LABEL_REGEX = /(.*?)\((.*?)\)/;
 
 const isNumber = (value: any) => {
   return typeof value === 'number' && isFinite(value);
@@ -27,8 +28,8 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
   };
 
   tableData.headList.forEach((item, index) => {
-    const regexResult = LABEL_WITH_UNIT_REGEX.exec(item);
     if (index === 0) {
+      const regexResult = X_LABEL_REGEX.exec(item);
       graphData.xAxis.label = regexResult ? regexResult[1].trim() : item.trim();
       const type = regexResult ? regexResult[2].trim().toLocaleLowerCase() : '';
       switch (type) {
@@ -58,6 +59,7 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
         }
       }
     } else {
+      const regexResult = Y_LABEL_REGEX.exec(item);
       const newSerie: Serie = {
         name: regexResult ? regexResult[1].trim() : item.trim(),
         unit: regexResult ? regexResult[2].trim() : undefined,
