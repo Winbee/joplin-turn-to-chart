@@ -1,13 +1,7 @@
 import { DataType, GraphData } from '../model/GraphData';
 import { generateHtml } from './htmlGenerator';
 import * as fs from 'fs';
-import { minify } from 'html-minifier';
-
-const minifyConf = {
-  collapseWhitespace: true,
-  removeComments: true,
-  minifyCSS: true,
-};
+import * as prettier from 'prettier';
 
 describe('htmlGenerator', () => {
   describe('generateHtml', () => {
@@ -173,16 +167,18 @@ describe('htmlGenerator', () => {
 
     test.each(cases)('return expected value for $title', ({ title, input }) => {
       const output = generateHtml(input);
-      const minifiedOutput = minify(output, minifyConf);
+      const formatedOutput = prettier.format(output, { filepath: 'file.html' });
 
       const fileName = title.split(' ').join('_');
       const filePath = `${__dirname}/testAsset/${fileName}.html`;
       if (!fs.existsSync(filePath)) {
         // When the file doesn't exist, we create them like snapshot test.
-        fs.writeFileSync(filePath, minifiedOutput);
+        fs.writeFileSync(filePath, formatedOutput);
       }
-      const expectedOutput = minify(fs.readFileSync(filePath).toString(), minifyConf);
-      expect(minifiedOutput).toEqual(expectedOutput);
+      const expectedOutput = prettier.format(fs.readFileSync(filePath).toString(), {
+        filepath: 'file.html',
+      });
+      expect(formatedOutput).toEqual(expectedOutput);
     });
   });
 });
