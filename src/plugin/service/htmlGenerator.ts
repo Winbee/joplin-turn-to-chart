@@ -93,6 +93,7 @@ export const generateHtml = (graphData: GraphData): string => {
   svg.append('g').attr('transform', `translate(0, ${height})`).call(axisBottom(x));
   svg
     .append('text')
+    .attr('fill', 'currentColor')
     .attr('transform', 'translate(' + width / 2 + ' ,' + (height + margin.bottom - 4) + ')')
     .style('text-anchor', 'middle')
     .text(graphData.xAxis.label);
@@ -101,6 +102,7 @@ export const generateHtml = (graphData: GraphData): string => {
   svg.append('g').call(axisLeft(y));
   svg
     .append('text')
+    .attr('fill', 'currentColor')
     .attr('transform', 'rotate(-90)')
     .attr('y', 0 - margin.left)
     .attr('x', 0 - height / 2)
