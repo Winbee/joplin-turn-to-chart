@@ -23,7 +23,8 @@ export const generateHtml = (graphData: GraphData): string => {
       'viewBox',
       `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`,
     )
-    .attr('width', '100%')
+    .style('width', '100%')
+    .style('max-width', '50em')
     .append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
 
