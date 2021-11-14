@@ -20,14 +20,14 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
         }
         case ConfigKind.xAxisFormat: {
           finalKey = key;
-          if (isNumber(+value)) {
-            finalValue = value;
-          }
+          finalValue = value;
           break;
         }
         case ConfigKind.xAxisNbOfTicks: {
           finalKey = key;
-          finalValue = value;
+          if (isNumber(+value)) {
+            finalValue = value;
+          }
           break;
         }
         case ConfigKind.xAxisOrigin: {
@@ -37,9 +37,7 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
         }
         case ConfigKind.yAxisFormat: {
           finalKey = key;
-          if (isNumber(+value)) {
-            finalValue = value;
-          }
+          finalValue = value;
           break;
         }
         case ConfigKind.yAxisOrigin: {
@@ -49,7 +47,9 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
         }
         case ConfigKind.yAxisNbOfTicks: {
           finalKey = key;
-          finalValue = value;
+          if (isNumber(+value)) {
+            finalValue = value;
+          }
           break;
         }
       }

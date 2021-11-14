@@ -18,16 +18,52 @@ The goal of this Joplin plugin is to render a chart based on a markdown table wi
   - Have at least 2 columns
   - All columns except the first one are numbers.
 - Wrap your table with ` ```turnToChart` and ` ``` `
+- Add options after the table
 
-## Type of the x-axis
-`turnToChart` plugin supports 3 types of data:
+*Example with extra options:*
+```
+year        | apple | pear
+----------- | ----- | -----
+2019        | 2     | 3
+2020        | 4     | 6
+2021        | 3     | 8
+
+
+xAxisType: date
+xAxisNbOfTicks: 4
+yAxisFormat: ($.0f
+yAxisNbOfTicks: 4
+yAxisOrigin: from zero
+```
+
+## Available options
+
+You have the possiblity to modify the chart by adding options after the table. There should be one option per line and it should follow the following syntax:  `optionKey: value of this option`.
+
+
+### xAxisType
+| optionKey      | possible values                     | behavior when no value   |
+| ---            | ---                                 | ---            |
+| xAxisType      | `number` or `date` or  `category`   | autodetected     |
+
+It supports 3 types of data:
 - `number`: numerical value as a continuous range
 - `date`: date value as a continuous range
 - `category`: string value as a discrete range
 
-By default, the plugin tries to guess the type but you can force it by providing it in square bracket `[]` in the first cell of the table.
+*Example where we enforce a `date` type with the normal syntax:*
+```
+year        | apple | pear
+----------- | ----- | -----
+2019        | 2     | 3
+2020        | 4     | 6
 
-*Example where we enforce a `date` type:*
+xAxisType: date
+```
+
+
+Note that you can also pass this option by providing it in square bracket `[]` in the first cell of the table.
+*Example where we enforce a `date` type with the square bracket `[]` syntax:*
 ```
 year [date] | apple | pear
 ----------- | ----- | -----
@@ -35,28 +71,35 @@ year [date] | apple | pear
 2020        | 4     | 6
 ```
 
-## Axis and their positions relative to 0
-By default, the plugin defines the domain of the x-axis and the y-axis based on the minimum and maximum of the data available.
+### xAxisFormat
+| optionKey      | possible values                     | behavior when no value  |
+| ---            | ---                                 | ---            |
+| xAxisFormat    | see [d3-format](https://github.com/d3/d3-format) for `number` xAxisType and [d3-time-format](https://github.com/d3/d3-time-format) for `date` xAxisType   | none     |
 
-If you wish to force an axis to start at 0, add `:` in the horizontal delimiters. If you add `:` on the first column, the x-axis will start at 0. If you add `:` on any other column, the y-axis will start at 0.
+### yAxisFormat
+(see xAxisFormat)
+
+### xAxisNbOfTicks
+| optionKey      | possible values               | behavior when no value  |
+| ---            | ---                           | ---            |
+| xAxisNbOfTicks | should be a positive number   | autodetected   |
+
+### yAxisNbOfTicks
+(see xAxisNbOfTicks)
+
+### xAxisOrigin
+| optionKey      | possible values               | behavior when no value  |
+| ---            | ---                           | ---            |
+| xAxisOrigin | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
+
+Note that you can enable the `from zero` option by adding `:` in the horizontal delimiters on the first column.
 
 *Note:* This rule is ignored for `date` and `category` type axis.
 
-*Example where we force the x-axis humidity to start at 0:*
-```
-humidity    | apple (kg) | pear (kg)
-:---------- | ---------- | -----
-20          | 2          | 3
-25          | 4          | 6
-```
+### yAxisOrigin
+(see xAxisOrigin)
 
-*Example where we force the y-axis kg to start at 0:*
-```
-humidity    | apple (kg) | pear (kg)
------------ | :--------- | :-----
-20          | 2          | 3
-25          | 4          | 6
-```
+Note that you can enable the `from zero` option by adding `:` in the horizontal delimiters on any other column after the first one.
 
 ## Units
 The unit for the x-axis is the full string of the first cell of the header.
