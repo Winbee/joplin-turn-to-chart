@@ -1,5 +1,6 @@
 import { AxisOriginKind, ConfigKind, ConfigMap } from '../model/ConfigData';
 import { DataType } from '../model/GraphData';
+import { isNumber } from './utils';
 
 export const buildConfigData = (configList: string[]): ConfigMap => {
   const configMap = new Map();
@@ -19,10 +20,12 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
         }
         case ConfigKind.xAxisFormat: {
           finalKey = key;
-          finalValue = value;
+          if (isNumber(+value)) {
+            finalValue = value;
+          }
           break;
         }
-        case ConfigKind.yAxisFormat: {
+        case ConfigKind.xAxisNbOfTicks: {
           finalKey = key;
           finalValue = value;
           break;
@@ -32,9 +35,21 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
           finalValue = Object.values(AxisOriginKind).find((item) => item === value);
           break;
         }
+        case ConfigKind.yAxisFormat: {
+          finalKey = key;
+          if (isNumber(+value)) {
+            finalValue = value;
+          }
+          break;
+        }
         case ConfigKind.yAxisOrigin: {
           finalKey = key;
           finalValue = Object.values(AxisOriginKind).find((item) => item === value);
+          break;
+        }
+        case ConfigKind.yAxisNbOfTicks: {
+          finalKey = key;
+          finalValue = value;
           break;
         }
       }

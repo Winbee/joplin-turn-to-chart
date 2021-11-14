@@ -2,17 +2,10 @@ import { AxisOriginKind, ConfigKind } from '../model/ConfigData';
 import { DataType, GraphData, Point, Serie, XType } from '../model/GraphData';
 import { TableData } from '../model/TableData';
 import { buildConfigData } from './configBuilder';
+import { isDate, isNumber } from './utils';
 
 const X_LABEL_REGEX = /(.*?)\[(.*?)\]/;
 const Y_LABEL_REGEX = /(.*?)\((.*?)\)/;
-
-const isNumber = (value: any) => {
-  return typeof value === 'number' && isFinite(value);
-};
-
-const isDate = (value: any) => {
-  return value instanceof Date && !isNaN(value.valueOf());
-};
 
 export const buildGraphData = (tableData: TableData): GraphData | undefined => {
   const graphData: GraphData = {

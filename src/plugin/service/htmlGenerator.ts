@@ -54,6 +54,10 @@ export const generateHtml = (graphData: GraphData): string => {
 
   // Add X axis
   let axisBottomCallback = axisBottom(x);
+  const xAxisNbOfTicks = graphData.configMap.get(ConfigKind.xAxisNbOfTicks);
+  if (xAxisNbOfTicks) {
+    axisBottomCallback = axisBottomCallback.ticks(xAxisNbOfTicks);
+  }
   const xAxisFormat = graphData.configMap.get(ConfigKind.xAxisFormat);
   if (xAxisFormat) {
     if (graphData.xAxis.dataType === DataType.date) {
@@ -72,6 +76,10 @@ export const generateHtml = (graphData: GraphData): string => {
 
   // Add Y axis
   let axisLeftCallback = axisLeft(y);
+  const yAxisNbOfTicks = graphData.configMap.get(ConfigKind.yAxisNbOfTicks);
+  if (yAxisNbOfTicks) {
+    axisLeftCallback = axisLeftCallback.ticks(yAxisNbOfTicks);
+  }
   const yAxisFormat = graphData.configMap.get(ConfigKind.yAxisFormat);
   if (yAxisFormat) {
     axisLeftCallback = axisLeftCallback.tickFormat(format(yAxisFormat));

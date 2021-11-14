@@ -1,8 +1,10 @@
 export enum ConfigKind {
   xAxisType = 'xAxisType',
   xAxisFormat = 'xAxisFormat',
-  yAxisFormat = 'yAxisFormat',
+  xAxisNbOfTicks = 'xAxisNbOfTicks',
   xAxisOrigin = 'xAxisOrigin',
+  yAxisFormat = 'yAxisFormat',
+  yAxisNbOfTicks = 'yAxisNbOfTicks',
   yAxisOrigin = 'yAxisOrigin',
 }
 
