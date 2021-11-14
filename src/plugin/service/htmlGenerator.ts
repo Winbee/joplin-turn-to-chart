@@ -2,9 +2,12 @@ import { JSDOM } from 'jsdom';
 import { select } from 'd3-selection';
 import { scaleLinear, scaleOrdinal, scaleTime, scaleBand } from 'd3-scale';
 import { line } from 'd3-shape';
+import { format } from 'd3-format';
+import { timeFormat } from 'd3-time-format';
 import { axisBottom, axisLeft } from 'd3-axis';
 import { schemeTableau10 } from 'd3-scale-chromatic';
 import { DataType, GraphData } from '../model/GraphData';
+import { ConfigKind } from '../model/ConfigData';
 
 export const generateHtml = (graphData: GraphData): string => {
   const margin = { top: 10, right: 30, bottom: 40, left: 50 };
@@ -50,7 +53,16 @@ export const generateHtml = (graphData: GraphData): string => {
   const y = scaleLinear().domain(graphData.yAxis.domain).range([height, 0]);
 
   // Add X axis
-  svg.append('g').attr('transform', `translate(0, ${height})`).call(axisBottom(x));
+  let axisBottomCallback = axisBottom(x);
+  const xAxisFormat = graphData.configMap.get(ConfigKind.xAxisFormat);
+  if (xAxisFormat) {
+    if (graphData.xAxis.dataType === DataType.date) {
+      axisBottomCallback = axisBottomCallback.tickFormat(timeFormat(xAxisFormat));
+    } else {
+      axisBottomCallback = axisBottomCallback.tickFormat(format(xAxisFormat));
+    }
+  }
+  svg.append('g').attr('transform', `translate(0, ${height})`).call(axisBottomCallback);
   svg
     .append('text')
     .attr('fill', 'currentColor')
@@ -59,7 +71,12 @@ export const generateHtml = (graphData: GraphData): string => {
     .text(graphData.xAxis.label);
 
   // Add Y axis
-  svg.append('g').call(axisLeft(y));
+  let axisLeftCallback = axisLeft(y);
+  const yAxisFormat = graphData.configMap.get(ConfigKind.yAxisFormat);
+  if (yAxisFormat) {
+    axisLeftCallback = axisLeftCallback.tickFormat(format(yAxisFormat));
+  }
+  svg.append('g').call(axisLeftCallback);
   svg
     .append('text')
     .attr('fill', 'currentColor')

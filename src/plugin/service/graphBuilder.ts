@@ -1,5 +1,7 @@
+import { AxisOriginKind, ConfigKind } from '../model/ConfigData';
 import { DataType, GraphData, Point, Serie, XType } from '../model/GraphData';
 import { TableData } from '../model/TableData';
+import { buildConfigData } from './configBuilder';
 
 const X_LABEL_REGEX = /(.*?)\[(.*?)\]/;
 const Y_LABEL_REGEX = /(.*?)\((.*?)\)/;
@@ -25,13 +27,18 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
       dataType: DataType.number,
       domain: [],
     },
+    configMap: buildConfigData(tableData.configList),
   };
 
   tableData.headList.forEach((item, index) => {
     if (index === 0) {
       const regexResult = X_LABEL_REGEX.exec(item);
       graphData.xAxis.label = regexResult ? regexResult[1].trim() : item.trim();
-      const type = regexResult ? regexResult[2].trim().toLocaleLowerCase() : '';
+      let type = graphData.configMap.get(ConfigKind.xAxisType);
+      if (!type) {
+        type = regexResult ? regexResult[2].trim().toLocaleLowerCase() : '';
+      }
+
       switch (type) {
         case DataType.number: {
           graphData.xAxis.dataType = DataType.number;
@@ -113,8 +120,13 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
     }
   }
 
-  const zeroShouldAppearOnXAxis = tableData.delimiter[0].includes(':');
-  if (graphData.xAxis.dataType === DataType.number && zeroShouldAppearOnXAxis) {
+  let xAxisOrigin = graphData.configMap.get(ConfigKind.xAxisOrigin);
+  if (!xAxisOrigin) {
+    xAxisOrigin = tableData.delimiter[0].includes(':')
+      ? AxisOriginKind.fromZero
+      : AxisOriginKind.fromDataBoundaries;
+  }
+  if (graphData.xAxis.dataType === DataType.number && xAxisOrigin === AxisOriginKind.fromZero) {
     if (xMin > 0) {
       xMin = 0;
     } else if (xMax < 0) {
@@ -122,8 +134,13 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
     }
   }
 
-  const zeroShouldAppearOnYAxis = tableData.delimiter.slice(1).some((item) => item.includes(':'));
-  if (zeroShouldAppearOnYAxis) {
+  let yAxisOrigin = graphData.configMap.get(ConfigKind.yAxisOrigin);
+  if (!yAxisOrigin) {
+    yAxisOrigin = tableData.delimiter.slice(1).some((item) => item.includes(':'))
+      ? AxisOriginKind.fromZero
+      : AxisOriginKind.fromDataBoundaries;
+  }
+  if (yAxisOrigin === AxisOriginKind.fromZero) {
     if (yMin > 0) {
       yMin = 0;
     } else if (yMax < 0) {

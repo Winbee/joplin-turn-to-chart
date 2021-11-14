@@ -15,6 +15,7 @@ describe('graphBuilder', () => {
             ['20', '4'],
             ['30', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -38,6 +39,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [2, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -50,6 +52,7 @@ describe('graphBuilder', () => {
             ['20', '4'],
             ['30', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -73,6 +76,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -85,6 +89,7 @@ describe('graphBuilder', () => {
             ['20', '4'],
             ['30', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -108,6 +113,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -116,6 +122,7 @@ describe('graphBuilder', () => {
           headList: ['xLabel (unit)', 'serie1 (kilo)'],
           delimiter: ['------', '------'],
           rowList: [['10', '2']],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -135,6 +142,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [2, 2],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -147,6 +155,7 @@ describe('graphBuilder', () => {
             ['2021-03-02', '4'],
             ['2021-04-02', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -170,6 +179,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -182,6 +192,7 @@ describe('graphBuilder', () => {
             ['2021-03-02', '4'],
             ['2021-04-02', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -205,6 +216,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -217,6 +229,7 @@ describe('graphBuilder', () => {
             ['category 2', '4'],
             ['category 3', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -240,6 +253,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [2, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -252,6 +266,7 @@ describe('graphBuilder', () => {
             ['category two', '4'],
             ['category three', '8'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -275,6 +290,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [2, 8],
           },
+          configMap: new Map(),
         },
       },
       {
@@ -288,6 +304,7 @@ describe('graphBuilder', () => {
             ['3', '0', '4', '1'],
             ['4', '5', '2', '3'],
           ],
+          configList: [],
         },
         expectedOutput: {
           serieList: [
@@ -332,6 +349,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 5],
           },
+          configMap: new Map(),
         },
       },
     ];

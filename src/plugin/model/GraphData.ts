@@ -1,3 +1,5 @@
+import { ConfigMap } from './ConfigData';
+
 export interface GraphData {
   serieList: Serie[];
   xAxis: {
@@ -10,6 +12,7 @@ export interface GraphData {
     dataType: DataType;
     domain: YType[];
   };
+  configMap: ConfigMap;
 }
 
 export interface Serie {

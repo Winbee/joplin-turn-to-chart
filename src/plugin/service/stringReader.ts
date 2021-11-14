@@ -12,9 +12,9 @@ function isSpace(code) {
 }
 
 function escapedSplit(str) {
-  let result = [];
+  const result = [];
   let pos = 0;
-  let max = str.length;
+  const max = str.length;
   let ch;
   let isEscaped = false;
   let lastPos = 0;
@@ -151,6 +151,7 @@ export function extractTableData(content: string): TableData | undefined {
   let headList: string[];
   let delimiter: string[];
   const rowList: string[][] = [];
+  // We read the table content
   for (nextLine = startLine; nextLine <= endLine; nextLine++) {
     lineText = lineList[nextLine].trim();
     if (!lineText) {
@@ -176,9 +177,21 @@ export function extractTableData(content: string): TableData | undefined {
       rowList.push(cellList);
     }
   }
+
+  const configList: string[] = [];
+  const startLineConfig = nextLine + 1;
+  // We read the config section
+  for (nextLine = startLineConfig; nextLine <= endLine; nextLine++) {
+    lineText = lineList[nextLine].trim();
+    if (lineText) {
+      configList.push(lineText);
+    }
+  }
+
   return {
     headList,
     delimiter,
     rowList,
+    configList,
   };
 }
