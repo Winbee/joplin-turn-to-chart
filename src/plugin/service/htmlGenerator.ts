@@ -49,6 +49,27 @@ export const generateHtml = (graphData: GraphData): string => {
   x = x.domain(graphData.xAxis.domain).range([0, width]);
   const y = scaleLinear().domain(graphData.yAxis.domain).range([height, 0]);
 
+  // Add X axis
+  svg.append('g').attr('transform', `translate(0, ${height})`).call(axisBottom(x));
+  svg
+    .append('text')
+    .attr('fill', 'currentColor')
+    .attr('transform', 'translate(' + width / 2 + ' ,' + (height + margin.bottom - 4) + ')')
+    .style('text-anchor', 'middle')
+    .text(graphData.xAxis.label);
+
+  // Add Y axis
+  svg.append('g').call(axisLeft(y));
+  svg
+    .append('text')
+    .attr('fill', 'currentColor')
+    .attr('transform', 'rotate(-90)')
+    .attr('y', 0 - margin.left)
+    .attr('x', 0 - height / 2)
+    .attr('dy', '1em')
+    .style('text-anchor', 'middle')
+    .text(graphData.yAxis.label);
+
   const serieListNames = graphData.serieList.map((item) => item.name);
   const color = scaleOrdinal().domain(serieListNames).range(schemeTableau10);
   if (graphData.xAxis.dataType === DataType.category) {
@@ -87,29 +108,18 @@ export const generateHtml = (graphData: GraphData): string => {
             .x((d) => x(d.x))
             .y((d) => y(d.y)),
         );
+
+      item.pointList.forEach((onePoint) => {
+        svg
+          .append('circle')
+          .datum(onePoint)
+          .attr('fill', color(item.name))
+          .attr('r', 2)
+          .attr('cx', x(onePoint.x))
+          .attr('cy', y(onePoint.y));
+      });
     });
   }
-
-  // Add X axis
-  svg.append('g').attr('transform', `translate(0, ${height})`).call(axisBottom(x));
-  svg
-    .append('text')
-    .attr('fill', 'currentColor')
-    .attr('transform', 'translate(' + width / 2 + ' ,' + (height + margin.bottom - 4) + ')')
-    .style('text-anchor', 'middle')
-    .text(graphData.xAxis.label);
-
-  // Add Y axis
-  svg.append('g').call(axisLeft(y));
-  svg
-    .append('text')
-    .attr('fill', 'currentColor')
-    .attr('transform', 'rotate(-90)')
-    .attr('y', 0 - margin.left)
-    .attr('x', 0 - height / 2)
-    .attr('dy', '1em')
-    .style('text-anchor', 'middle')
-    .text(graphData.yAxis.label);
 
   // Add the legend
   const rootLegend = rootDiv
