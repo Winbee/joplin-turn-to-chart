@@ -47,8 +47,11 @@ function escapedSplit(str) {
   return result;
 }
 
+const COMMENT_REGEX = /<\!--.*?-->/g;
+
 export function extractTableData(content: string): TableData | undefined {
   const lineList = content
+    .replace(COMMENT_REGEX, '')
     .trim()
     .split(/\r\n|\n\r|\n|\r/)
     .map((item) => item.trim());

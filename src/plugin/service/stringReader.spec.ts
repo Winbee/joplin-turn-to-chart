@@ -86,6 +86,26 @@ describe('stringReader', () => {
           configList: ['config key 1 : a config value', 'config key 2: another config value'],
         },
       },
+      {
+        title: 'a table with comments',
+        input: `
+      | title1 <!--comment1--> | <!--comment2 --> title2   |
+      | :------ | ------ |
+      | cell A1 | cell B1 <!--comment3 --> |
+      | cell <!-- comment4 -->A2 <!-- comment5 --> | cell B2 |
+      | cell A3 | cell B3 |
+      `,
+        expectedOutput: {
+          headList: ['title1', 'title2'],
+          delimiter: [':------', '------'],
+          rowList: [
+            ['cell A1', 'cell B1'],
+            ['cell A2', 'cell B2'],
+            ['cell A3', 'cell B3'],
+          ],
+          configList: [],
+        },
+      },
     ];
 
     test.each(cases)('return expected value for $title', ({ input, expectedOutput }) => {

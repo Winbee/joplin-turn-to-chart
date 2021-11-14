@@ -105,6 +105,17 @@ Note that you can enable the `from zero` option by adding `:` in the horizontal 
 The unit for the x-axis is the full string of the first cell of the header.
 The units for the y-axis are the string in parentheses `()` of each subsequent cells of the header.
 
+## Comments
+Any string surrounded by `<!--` and `-->` will be ignored by the plugin.
+
+*Example of a table with comments:*
+```
+year  <!--this is a comment -->      | apple | pear
+-----------------------------------  | ----- | -----
+2019                                 | 2     | 3 <!-- another comment --> 
+2020                                 | 4     | 6
+```
+
 # Development
 If you want to contribute to this plugin you can find here some userful references:
 
