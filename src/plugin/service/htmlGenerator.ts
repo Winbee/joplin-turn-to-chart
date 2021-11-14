@@ -10,7 +10,7 @@ import { DataType, GraphData } from '../model/GraphData';
 import { ConfigKind } from '../model/ConfigData';
 
 export const generateHtml = (graphData: GraphData): string => {
-  const margin = { top: 10, right: 30, bottom: 40, left: 50 };
+  const margin = { top: 10, right: 30, bottom: 40, left: 55 };
   const width = 600 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
