@@ -21,7 +21,8 @@ The goal of this Joplin plugin is to render a chart based on a markdown table wi
 - Add options after the table
 
 *Example with extra options:*
-```
+~~~
+```turnToChart
 year        | apple | pear
 ----------- | ----- | -----
 2019        | 2     | 3
@@ -35,6 +36,7 @@ yAxisFormat: ($.0f
 yAxisNbOfTicks: 4
 yAxisOrigin: from zero
 ```
+~~~
 
 ## Available options
 
@@ -82,6 +84,19 @@ Here is the list of locale available:
 
 (If some translations of the `legend` title are inaccurate, don't hesitate to post a message)
 
+*Example where we enforce Hungarian language:*
+~~~
+```turnToChart
+year        | apple | pear
+----------- | ----- | -----
+2019        | 2     | 3
+2020        | 4     | 6
+
+xAxisType: date
+customLocale: hu-HU
+```
+~~~
+
 ### xAxisType
 | optionKey      | possible values                     | behavior when no value   |
 | ---            | ---                                 | ---            |
@@ -93,7 +108,8 @@ It supports 3 types of data:
 - `category`: string value as a discrete range
 
 *Example where we enforce a `date` type with the normal syntax:*
-```
+~~~
+```turnToChart
 year        | apple | pear
 ----------- | ----- | -----
 2019        | 2     | 3
@@ -101,16 +117,19 @@ year        | apple | pear
 
 xAxisType: date
 ```
+~~~
 
 
 Note that you can also pass this option by providing it in square bracket `[]` in the first cell of the table.
 *Example where we enforce a `date` type with the square bracket `[]` syntax:*
-```
+~~~
+```turnToChart
 year [date] | apple | pear
 ----------- | ----- | -----
 2019        | 2     | 3
 2020        | 4     | 6
 ```
+~~~
 
 ### xAxisFormat
 | optionKey      | possible values                     | behavior when no value  |
@@ -150,12 +169,14 @@ The units for the y-axis are the string in parentheses `()` of each subsequent c
 Any string surrounded by `<!--` and `-->` will be ignored by the plugin.
 
 *Example of a table with comments:*
-```
+~~~
+```turnToChart
 year  <!--this is a comment -->      | apple | pear
 -----------------------------------  | ----- | -----
 2019                                 | 2     | 3 <!-- another comment --> 
 2020                                 | 4     | 6
 ```
+~~~
 
 # Development
 If you want to contribute to this plugin you can find here some userful references:
