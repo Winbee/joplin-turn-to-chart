@@ -1,10 +1,13 @@
 module.exports = {
   transform: {
-    "^.+\\.(ts)?$": "ts-jest",
-    "^.+\\.(js)$": "babel-jest",
+    '^.+\\.(ts)?$': 'ts-jest',
+    '^.+\\.(js)$': 'babel-jest',
   },
-  transformIgnorePatterns: ["<rootDir>/node_modules/(?!(d3.*|internmap)/)"],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(d3.*|internmap)/)'],
   moduleNameMapper: {
-    "^canvas$": "nothing",
+    '^canvas$': 'nothing',
+  },
+  globals: {
+    navigator: { userAgent: 'node.js' },
   },
 };

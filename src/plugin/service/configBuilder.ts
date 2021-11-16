@@ -13,6 +13,11 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
       let finalKey: ConfigKind | undefined;
       let finalValue;
       switch (key) {
+        case ConfigKind.customLocale: {
+          finalKey = key;
+          finalValue = value;
+          break;
+        }
         case ConfigKind.xAxisType: {
           finalKey = key;
           finalValue = Object.values(DataType).find((item) => item === value);

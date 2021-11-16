@@ -1,4 +1,5 @@
 export enum ConfigKind {
+  customLocale = 'customLocale',
   xAxisType = 'xAxisType',
   xAxisFormat = 'xAxisFormat',
   xAxisNbOfTicks = 'xAxisNbOfTicks',

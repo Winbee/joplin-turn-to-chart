@@ -3,16 +3,22 @@ import { select } from 'd3-selection';
 import { scaleLinear, scaleOrdinal, scaleTime, scaleBand } from 'd3-scale';
 import { line } from 'd3-shape';
 import { format } from 'd3-format';
-import { timeFormat } from 'd3-time-format';
+import { timeFormat, timeFormatDefaultLocale } from 'd3-time-format';
 import { axisBottom, axisLeft } from 'd3-axis';
 import { schemeTableau10 } from 'd3-scale-chromatic';
 import { DataType, GraphData } from '../model/GraphData';
 import { ConfigKind } from '../model/ConfigData';
+import { getDateTimeLocale, getLegendTranslation, getLocale } from './translationManager';
 
 export const generateHtml = (graphData: GraphData): string => {
   const margin = { top: 10, right: 30, bottom: 40, left: 55 };
   const width = 600 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
+
+  const customLocale = graphData.configMap.get(ConfigKind.customLocale);
+  const locale = getLocale(customLocale ?? navigator.language);
+  const d3TimeLocale = getDateTimeLocale(locale);
+  timeFormatDefaultLocale(d3TimeLocale);
 
   const rootFragment = JSDOM.fragment(`<div></div>`);
   const rootDiv = select(rootFragment.firstChild);
@@ -146,6 +152,7 @@ export const generateHtml = (graphData: GraphData): string => {
     });
   }
 
+  const legendTitle = getLegendTranslation(locale);
   // Add the legend
   const rootLegend = rootDiv
     .append('xhtml:div')
@@ -160,7 +167,7 @@ export const generateHtml = (graphData: GraphData): string => {
     .append('xhtml:div')
     .style('font-weight', 'bold')
     .style('margin-bottom', '0.3em')
-    .text('Legend');
+    .text(legendTitle);
   graphData.serieList.forEach((item) => {
     const oneLegendItem = rootLegend
       .append('xhtml:div')

@@ -40,6 +40,47 @@ yAxisOrigin: from zero
 
 You have the possiblity to modify the chart by adding options after the table. There should be one option per line and it should follow the following syntax:  `optionKey: value of this option`.
 
+### customLocale
+| optionKey      | possible values                     | behavior when no value   |
+| ---            | ---                                 | ---                      |
+| customLocale   | see the list below                  | consider `en-GB` by default                    |
+
+Translate in this locale the date on the xAxis when xAxisType=`date` and the legend title.
+
+Here is the list of locale available:
+- `ar-EG`: Arabic (Egypt)
+- `ca-ES`: Catalan (Spain)
+- `cs-CZ`: Czech (Czech Republic)
+- `da-DK`: Danish (Denmark)
+- `de-CH`: German (Switzerland)
+- `de-DE`: German (Germany)
+- `en-CA`: English (Canada)
+- `en-GB`: English (United Kingdom)
+- `en-US`: English (United States)
+- `es-ES`: Spanish (Spain)
+- `es-MX`: Spanish (Mexico)
+- `fa-IR`: Persian (Iran)
+- `fi-FI`: Finnish (Finland)
+- `fr-CA`: French (Canada)
+- `fr-FR`: French (France)
+- `he-IL`: Hebrew (Israel)
+- `hu-HU`: Hungarian (Hungary)
+- `it-IT`: Italian (Italy)
+- `ja-JP`: Japanese (Japan)
+- `ko-KR`: Korean (South Korea)
+- `mk-MK`: Macedonian (Macedonia)
+- `nb-NO`: Norwegian Bokmål (Norway)
+- `nl-NL`: Dutch (Netherlands)
+- `pl-PL`: Polish (Poland)
+- `pt-BR`: Portuguese (Brazil)
+- `ru-RU`: Russian (Russia)
+- `sv-SE`: Swedish (Sweden)
+- `tr-TR`: Turkish (Turkey)
+- `uk-UA`: Ukrainian (Ukraine)
+- `zh-CN`: Chinese (China)
+- `zh-TW`: Chinese (Taiwan)
+
+(If some translations of the `legend` title are inaccurate, don't hesitate to post a message)
 
 ### xAxisType
 | optionKey      | possible values                     | behavior when no value   |
