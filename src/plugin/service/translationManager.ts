@@ -15,6 +15,7 @@ export enum AvailableLocale {
   frCA = 'fr-CA', // French (Canada)
   frFR = 'fr-FR', // French (France)
   heIL = 'he-IL', // Hebrew (Israel)
+  hrHR = 'hr-HR', // Croatian (Croatia)
   huHU = 'hu-HU', // Hungarian (Hungary)
   itIT = 'it-IT', // Italian (Italy)
   jaJP = 'ja-JP', // Japanese (Japan)
@@ -74,6 +75,8 @@ export const getLegendTranslation = (locale: AvailableLocale): string => {
       return 'Légende';
     case AvailableLocale.heIL:
       return 'כְּתוֹבֶת';
+    case AvailableLocale.hrHR:
+      return 'Legenda';
     case AvailableLocale.huHU:
       return 'Jelmagyarázat';
     case AvailableLocale.itIT:
