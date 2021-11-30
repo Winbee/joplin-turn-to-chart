@@ -187,7 +187,7 @@ year  <!--this is a comment -->      | apple | pear
 ~~~
 
 ## Formulas
-turnToChart is compatible with (Markdown table calculations)[https://github.com/oswida/joplin-markdown-calc] plugin. Install it to be able to add formulas in your table.
+turnToChart is compatible with [Markdown table calculations](https://github.com/oswida/joplin-markdown-calc) plugin. Install it to be able to add formulas in your table.
 
 *Example of a table with formulas:*
 ~~~
