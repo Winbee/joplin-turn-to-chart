@@ -7,8 +7,8 @@ import { timeFormat, timeFormatDefaultLocale } from 'd3-time-format';
 import { axisBottom, axisLeft } from 'd3-axis';
 import { schemeTableau10 } from 'd3-scale-chromatic';
 import { DataType, GraphData } from '../model/GraphData';
-import { ConfigKind } from '../model/ConfigData';
-import { getDateTimeLocale, getLegendTranslation, getLocale } from './translationManager';
+import { ConfigKind, LegendOrientation } from '../model/ConfigData';
+import { getDateTimeLocale, getLocale } from './translationManager';
 
 export const generateHtml = (graphData: GraphData): string => {
   const margin = { top: 10, right: 30, bottom: 40, left: 55 };
@@ -22,10 +22,7 @@ export const generateHtml = (graphData: GraphData): string => {
 
   const rootFragment = JSDOM.fragment(`<div></div>`);
   const rootDiv = select(rootFragment.firstChild);
-  rootDiv
-    .style('display', 'flex')
-    .style('flex-direction', 'column')
-    .style('align-items', 'flex-start');
+  rootDiv.style('display', 'flex').style('flex-direction', 'column').style('align-items', 'center');
   const svg = rootDiv
     .append('svg')
     .attr(
@@ -152,22 +149,24 @@ export const generateHtml = (graphData: GraphData): string => {
     });
   }
 
-  const legendTitle = getLegendTranslation(locale);
   // Add the legend
+  const legendIsVertical =
+    graphData.configMap.get(ConfigKind.legendOrientation) === LegendOrientation.vertical;
   const rootLegend = rootDiv
     .append('xhtml:div')
     .style('display', 'flex')
-    .style('flex-direction', 'column')
-    .style('gap', '0.2em')
-    .style('margin', '1em')
+    .style('flex-direction', legendIsVertical ? 'column' : 'row')
+    .style('flex-wrap', 'wrap')
+    .style('justify-content', legendIsVertical ? 'flex-start' : 'center')
+    .style('gap', legendIsVertical ? '0.2em' : '1em')
+    .style('margin', legendIsVertical ? '1em auto 1em 1em' : '1em')
     .style('padding', '0.6em')
     .style('border-radius', '5px')
     .style('background', '#0000000d');
-  rootLegend
-    .append('xhtml:div')
-    .style('font-weight', 'bold')
-    .style('margin-bottom', '0.3em')
-    .text(legendTitle);
+  const legendTitle = graphData.configMap.get(ConfigKind.legendTitle);
+  if (legendTitle) {
+    rootLegend.append('xhtml:div').style('font-weight', 'bold').text(legendTitle);
+  }
   graphData.serieList.forEach((item) => {
     const oneLegendItem = rootLegend
       .append('xhtml:div')

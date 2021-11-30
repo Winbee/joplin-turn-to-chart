@@ -1,4 +1,4 @@
-import { AxisOriginKind, ConfigKind, ConfigMap } from '../model/ConfigData';
+import { AxisOriginKind, ConfigKind, ConfigMap, LegendOrientation } from '../model/ConfigData';
 import { DataType } from '../model/GraphData';
 import { isNumber } from './utils';
 
@@ -14,6 +14,16 @@ export const buildConfigData = (configList: string[]): ConfigMap => {
       let finalValue;
       switch (key) {
         case ConfigKind.customLocale: {
+          finalKey = key;
+          finalValue = value;
+          break;
+        }
+        case ConfigKind.legendOrientation: {
+          finalKey = key;
+          finalValue = Object.values(LegendOrientation).find((item) => item === value);
+          break;
+        }
+        case ConfigKind.legendTitle: {
           finalKey = key;
           finalValue = value;
           break;

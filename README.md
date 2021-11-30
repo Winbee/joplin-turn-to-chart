@@ -43,11 +43,11 @@ yAxisOrigin: from zero
 You have the possiblity to modify the chart by adding options after the table. There should be one option per line and it should follow the following syntax:  `optionKey: value of this option`.
 
 ### customLocale
-| optionKey      | possible values                     | behavior when no value   |
-| ---            | ---                                 | ---                      |
-| customLocale   | see the list below                  | consider `en-GB` by default                    |
+| optionKey      | possible values                     | behavior when no value         |
+| ---            | ---                                 | ---                            |
+| customLocale   | see the list below                  | consider `en-GB` by default    |
 
-Translate in this locale the date on the xAxis when xAxisType=`date` and the legend title.
+Translate in this locale the date on the xAxis when xAxisType=`date`.
 
 Here is the list of locale available:
 - `ar-EG`: Arabic (Egypt)
@@ -82,8 +82,6 @@ Here is the list of locale available:
 - `zh-CN`: Chinese (China)
 - `zh-TW`: Chinese (Taiwan)
 
-(If some translations of the `legend` title are inaccurate, don't hesitate to post a message)
-
 *Example where we enforce Hungarian language:*
 ~~~
 ```turnToChart
@@ -97,10 +95,20 @@ customLocale: hu-HU
 ```
 ~~~
 
+### legendOrientation
+| optionKey          | possible values              | behavior when no value   |
+| ---                | ---                          | ---                      |
+| legendOrientation  | `vertical` or `horizontal`   | `horizontal`             |
+
+### legendTitle
+| optionKey          | possible values              | behavior when no value   |
+| ---                | ---                          | ---                      |
+| legendTitle        | any string value             | No title                 |
+
 ### xAxisType
 | optionKey      | possible values                     | behavior when no value   |
-| ---            | ---                                 | ---            |
-| xAxisType      | `number` or `date` or  `category`   | autodetected     |
+| ---            | ---                                 | ---                      |
+| xAxisType      | `number` or `date` or  `category`   | autodetected             |
 
 It supports 3 types of data:
 - `number`: numerical value as a continuous range
@@ -132,24 +140,24 @@ year [date] | apple | pear
 ~~~
 
 ### xAxisFormat
-| optionKey      | possible values                     | behavior when no value  |
-| ---            | ---                                 | ---            |
+| optionKey      | possible values                     | behavior when no value   |
+| ---            | ---                                 | ---                      |
 | xAxisFormat    | see [d3-format](https://github.com/d3/d3-format) for `number` xAxisType and [d3-time-format](https://github.com/d3/d3-time-format) for `date` xAxisType   | none     |
 
 ### yAxisFormat
 (see xAxisFormat)
 
 ### xAxisNbOfTicks
-| optionKey      | possible values               | behavior when no value  |
-| ---            | ---                           | ---            |
-| xAxisNbOfTicks | should be a positive number   | autodetected   |
+| optionKey      | possible values               | behavior when no value   |
+| ---            | ---                           | ---                      |
+| xAxisNbOfTicks | should be a positive number   | autodetected             |
 
 ### yAxisNbOfTicks
 (see xAxisNbOfTicks)
 
 ### xAxisOrigin
-| optionKey      | possible values               | behavior when no value  |
-| ---            | ---                           | ---            |
+| optionKey      | possible values                     | behavior when no value       |
+| ---            | ---                                 | ---                          |
 | xAxisOrigin | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
 
 Note that you can enable the `from zero` option by adding `:` in the horizontal delimiters on the first column.
