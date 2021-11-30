@@ -186,6 +186,21 @@ year  <!--this is a comment -->      | apple | pear
 ```
 ~~~
 
+## Formulas
+turnToChart is compatible with (Markdown table calculations)[https://github.com/oswida/joplin-markdown-calc] plugin. Install it to be able to add formulas in your table.
+
+*Example of a table with formulas:*
+~~~
+```turnToChart
+| xAxis   | linear         |    square       |
+|---------|---------       |---------------- |
+| 0       |<!--FM 2*A1--> 0|<!--FM A1*A1--> 0|
+| 1       |<!--FM 2*A2--> 2|<!--FM A2*A2--> 1|
+| 2       |<!--FM 2*A3--> 4|<!--FM A3*A3--> 4|
+| 3       |<!--FM 2*A4--> 6|<!--FM A4*A4--> 9|
+```
+~~~
+
 # Development
 If you want to contribute to this plugin you can find here some userful references:
 
