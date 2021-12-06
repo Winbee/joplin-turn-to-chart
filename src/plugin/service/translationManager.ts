@@ -15,6 +15,7 @@ export enum AvailableLocale {
   frCA = 'fr-CA', // French (Canada)
   frFR = 'fr-FR', // French (France)
   heIL = 'he-IL', // Hebrew (Israel)
+  hrHR = 'hr-HR', // Croatian (Croatia)
   huHU = 'hu-HU', // Hungarian (Hungary)
   itIT = 'it-IT', // Italian (Italy)
   jaJP = 'ja-JP', // Japanese (Japan)

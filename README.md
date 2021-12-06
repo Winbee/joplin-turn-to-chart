@@ -66,6 +66,7 @@ Here is the list of locale available:
 - `fr-CA`: French (Canada)
 - `fr-FR`: French (France)
 - `he-IL`: Hebrew (Israel)
+- `hr-HR`: Croatian (Croatia)
 - `hu-HU`: Hungarian (Hungary)
 - `it-IT`: Italian (Italy)
 - `ja-JP`: Japanese (Japan)
