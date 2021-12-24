@@ -152,7 +152,6 @@ export function extractTableData(content: string): TableData | undefined {
   }
 
   let headList: string[];
-  let delimiter: string[];
   const rowList: string[][] = [];
   // We read the table content
   for (nextLine = startLine; nextLine <= endLine; nextLine++) {
@@ -175,7 +174,7 @@ export function extractTableData(content: string): TableData | undefined {
     if (nextLine === 0) {
       headList = cellList;
     } else if (nextLine === 1) {
-      delimiter = cellList;
+      // Ignore this line
     } else {
       rowList.push(cellList);
     }
@@ -193,7 +192,6 @@ export function extractTableData(content: string): TableData | undefined {
 
   return {
     headList,
-    delimiter,
     rowList,
     configList,
   };

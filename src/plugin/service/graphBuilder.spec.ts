@@ -1,3 +1,4 @@
+import { ConfigKind } from '../model/ConfigData';
 import { DataType, GraphData } from '../model/GraphData';
 import { TableData } from '../model/TableData';
 import { buildGraphData } from './graphBuilder';
@@ -9,13 +10,12 @@ describe('graphBuilder', () => {
         title: 'one number serie with x-axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
-          delimiter: [':------', '------'],
           rowList: [
             ['10', '2'],
             ['20', '4'],
             ['30', '8'],
           ],
-          configList: [],
+          configList: ['xAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -39,20 +39,19 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [2, 8],
           },
-          configMap: new Map(),
+          configMap: new Map([[ConfigKind.xAxisOrigin, 'from zero']]),
         },
       },
       {
         title: 'one number serie with y-axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
-          delimiter: ['------', ':------'],
           rowList: [
             ['10', '2'],
             ['20', '4'],
             ['30', '8'],
           ],
-          configList: [],
+          configList: ['yAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -76,20 +75,19 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
-          configMap: new Map(),
+          configMap: new Map([[ConfigKind.yAxisOrigin, 'from zero']]),
         },
       },
       {
         title: 'one number serie with both axis starting at zero',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
-          delimiter: [':------', ':------'],
           rowList: [
             ['10', '2'],
             ['20', '4'],
             ['30', '8'],
           ],
-          configList: [],
+          configList: ['xAxisOrigin: from zero', 'yAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -113,14 +111,16 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
-          configMap: new Map(),
+          configMap: new Map([
+            [ConfigKind.xAxisOrigin, 'from zero'],
+            [ConfigKind.yAxisOrigin, 'from zero'],
+          ]),
         },
       },
       {
         title: 'one number serie with x-with-unit',
         input: {
           headList: ['xLabel (unit)', 'serie1 (kilo)'],
-          delimiter: ['------', '------'],
           rowList: [['10', '2']],
           configList: [],
         },
@@ -149,13 +149,12 @@ describe('graphBuilder', () => {
         title: 'one time-serie',
         input: {
           headList: ['xLabel [date]', 'serie1 (kilo)'],
-          delimiter: ['------', ':------'],
           rowList: [
             ['2021-01-02', '2'],
             ['2021-03-02', '4'],
             ['2021-04-02', '8'],
           ],
-          configList: [],
+          configList: ['yAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -179,20 +178,19 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
-          configMap: new Map(),
+          configMap: new Map([[ConfigKind.yAxisOrigin, 'from zero']]),
         },
       },
       {
         title: 'one time-serie by guessing',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
-          delimiter: ['------', ':------'],
           rowList: [
             ['2021-01-02', '2'],
             ['2021-03-02', '4'],
             ['2021-04-02', '8'],
           ],
-          configList: [],
+          configList: ['yAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -216,14 +214,13 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 8],
           },
-          configMap: new Map(),
+          configMap: new Map([[ConfigKind.yAxisOrigin, 'from zero']]),
         },
       },
       {
         title: 'one category serie',
         input: {
           headList: ['xLabel [category]', 'serie1 (kilo)'],
-          delimiter: ['------', '------'],
           rowList: [
             ['category 1', '2'],
             ['category 2', '4'],
@@ -260,7 +257,6 @@ describe('graphBuilder', () => {
         title: 'one category serie by guessing',
         input: {
           headList: ['xLabel', 'serie1 (kilo)'],
-          delimiter: ['------', '------'],
           rowList: [
             ['category one', '2'],
             ['category two', '4'],
@@ -297,14 +293,13 @@ describe('graphBuilder', () => {
         title: 'three number series',
         input: {
           headList: ['xLabel', 'serie1', 'serie2', 'serie3'],
-          delimiter: ['------', '------', '------', '------'],
           rowList: [
             ['1', '2', '1', '0'],
             ['2', '1', '1', '4'],
             ['3', '0', '4', '1'],
             ['4', '5', '2', '3'],
           ],
-          configList: [],
+          configList: ['yAxisOrigin: from zero'],
         },
         expectedOutput: {
           serieList: [
@@ -349,7 +344,7 @@ describe('graphBuilder', () => {
             dataType: DataType.number,
             domain: [0, 5],
           },
-          configMap: new Map(),
+          configMap: new Map([[ConfigKind.yAxisOrigin, 'from zero']]),
         },
       },
     ];

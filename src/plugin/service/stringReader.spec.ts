@@ -5,7 +5,6 @@ describe('stringReader', () => {
   describe('extractTableData', () => {
     const expectedOutput: TableData = {
       headList: ['title1', 'title2'],
-      delimiter: [':------', '------'],
       rowList: [['cell A1', 'cell B1']],
       configList: [],
     };
@@ -28,7 +27,6 @@ describe('stringReader', () => {
       `,
         expectedOutput: {
           headList: ['title1', 'title2'],
-          delimiter: [':------', '------'],
           rowList: [
             ['cell A1', 'cell B1'],
             ['cell A2', 'cell B2'],
@@ -81,7 +79,6 @@ describe('stringReader', () => {
       `,
         expectedOutput: {
           headList: ['title1', 'title2'],
-          delimiter: [':------', '------'],
           rowList: [['cell A1', 'cell B1']],
           configList: ['config key 1 : a config value', 'config key 2: another config value'],
         },
@@ -97,7 +94,6 @@ describe('stringReader', () => {
       `,
         expectedOutput: {
           headList: ['title1', 'title2'],
-          delimiter: [':------', '------'],
           rowList: [
             ['cell A1', 'cell B1'],
             ['cell A2', 'cell B2'],

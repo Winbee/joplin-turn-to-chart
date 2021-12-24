@@ -113,12 +113,8 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
     }
   }
 
-  let xAxisOrigin = graphData.configMap.get(ConfigKind.xAxisOrigin);
-  if (!xAxisOrigin) {
-    xAxisOrigin = tableData.delimiter[0].includes(':')
-      ? AxisOriginKind.fromZero
-      : AxisOriginKind.fromDataBoundaries;
-  }
+  let xAxisOrigin =
+    graphData.configMap.get(ConfigKind.xAxisOrigin) ?? AxisOriginKind.fromDataBoundaries;
   if (graphData.xAxis.dataType === DataType.number && xAxisOrigin === AxisOriginKind.fromZero) {
     if (xMin > 0) {
       xMin = 0;
@@ -127,12 +123,8 @@ export const buildGraphData = (tableData: TableData): GraphData | undefined => {
     }
   }
 
-  let yAxisOrigin = graphData.configMap.get(ConfigKind.yAxisOrigin);
-  if (!yAxisOrigin) {
-    yAxisOrigin = tableData.delimiter.slice(1).some((item) => item.includes(':'))
-      ? AxisOriginKind.fromZero
-      : AxisOriginKind.fromDataBoundaries;
-  }
+  let yAxisOrigin =
+    graphData.configMap.get(ConfigKind.yAxisOrigin) ?? AxisOriginKind.fromDataBoundaries;
   if (yAxisOrigin === AxisOriginKind.fromZero) {
     if (yMin > 0) {
       yMin = 0;

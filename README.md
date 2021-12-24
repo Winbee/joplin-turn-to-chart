@@ -157,18 +157,16 @@ year [date] | apple | pear
 (see xAxisNbOfTicks)
 
 ### xAxisOrigin
-| optionKey      | possible values                     | behavior when no value       |
-| ---            | ---                                 | ---                          |
-| xAxisOrigin | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
+| optionKey      | possible values                        | behavior when no value       |
+| ---            | ---                                    | ---                          |
+| xAxisOrigin    | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
 
-Note that you can enable the `from zero` option by adding `:` in the horizontal delimiters on the first column.
-
-*Note:* This rule is ignored for `date` and `category` type axis.
+*Note:* This rule is ignored for `date` and `category` type x-axis.
 
 ### yAxisOrigin
-(see xAxisOrigin)
-
-Note that you can enable the `from zero` option by adding `:` in the horizontal delimiters on any other column after the first one.
+| optionKey      | possible values                        | behavior when no value       |
+| ---            | ---                                    | ---                          |
+| yAxisOrigin    | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
 
 ## Units
 The unit for the x-axis is the full string of the first cell of the header.
