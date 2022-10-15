@@ -1,5 +1,5 @@
 {
-  "name": "joplin-plugin-turntochart",
+  "name": "joplin-plugin-turn-to-chart",
   "version": "1.7.0",
   "scripts": {
     "dist": "webpack --joplin-plugin-config buildMain && webpack --joplin-plugin-config buildExtraScripts && webpack --joplin-plugin-config createArchive",
