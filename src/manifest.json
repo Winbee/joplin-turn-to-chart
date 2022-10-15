@@ -1,12 +1,13 @@
 {
   "manifest_version": 1,
   "id": "net.gagnepain.turnToChart",
-  "app_min_version": "1.8",
-  "version": "1.6.0",
+  "app_min_version": "2.8",
+  "version": "1.7.0",
   "name": "turnToChart",
   "description": "Transform markdown table into d3js chart",
   "author": "Samuel Gagnepain",
   "homepage_url": "https://github.com/Winbee/joplin-turn-to-chart",
   "repository_url": "https://github.com/Winbee/joplin-turn-to-chart",
-  "keywords": ["joplin", "table", "graph", "chart", "ui"]
+  "keywords": ["joplin", "table", "graph", "chart", "ui"],
+  "categories": []
 }
