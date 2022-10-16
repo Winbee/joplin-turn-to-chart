@@ -33,6 +33,6 @@
     "yargs": "^16.2.0"
   },
   "dependencies": {
-    "turn-to-chart": "^0.1.0"
+    "turn-to-chart": "^1.0.0"
   }
 }
