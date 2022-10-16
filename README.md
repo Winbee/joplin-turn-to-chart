@@ -2,9 +2,11 @@
 
 The goal of this Joplin plugin is to render an HTML chart based on a `markdown` or `csv` with minimum configuration.
 
-![Category Example](./doc/categoryExample.gif)
+![Category Example](./doc/mdCategoryExample.gif)
 
-![Date Example](./doc/dateExample.gif)
+![Number Example](./doc/mdNumberExample.gif)
+
+![CSV Example](./doc/csvCategoryExample.gif)
 
 # How to install
 
