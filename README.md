@@ -1,6 +1,7 @@
 # :memo::curly_loop::bar_chart: Transforms tables to charts
 
 The goal of this Joplin plugin is to render an HTML chart based on a `markdown` or `csv` with minimum configuration.
+It is based on the [turn-to-chart library](https://winbee.github.io/turn-to-chart/).
 
 ![Category Example](./doc/mdCategoryExample.gif)
 
@@ -59,150 +60,7 @@ yAxisOrigin: from zero
 
 ## Available options
 
-You have the possiblity to modify the chart by adding options after the table. There should be one option per line and it should follow the following syntax:  `optionKey: value of this option`.
-
-### customLocale
-| optionKey      | possible values                     | behavior when no value         |
-| ---            | ---                                 | ---                            |
-| customLocale   | see the list below                  | consider `en-GB` by default    |
-
-Translate in this locale the date on the xAxis when xAxisType=`date`.
-
-Here is the list of locale available:
-- `ar-EG`: Arabic (Egypt)
-- `ca-ES`: Catalan (Spain)
-- `cs-CZ`: Czech (Czech Republic)
-- `da-DK`: Danish (Denmark)
-- `de-CH`: German (Switzerland)
-- `de-DE`: German (Germany)
-- `en-CA`: English (Canada)
-- `en-GB`: English (United Kingdom)
-- `en-US`: English (United States)
-- `es-ES`: Spanish (Spain)
-- `es-MX`: Spanish (Mexico)
-- `fa-IR`: Persian (Iran)
-- `fi-FI`: Finnish (Finland)
-- `fr-CA`: French (Canada)
-- `fr-FR`: French (France)
-- `he-IL`: Hebrew (Israel)
-- `hr-HR`: Croatian (Croatia)
-- `hu-HU`: Hungarian (Hungary)
-- `it-IT`: Italian (Italy)
-- `ja-JP`: Japanese (Japan)
-- `ko-KR`: Korean (South Korea)
-- `mk-MK`: Macedonian (Macedonia)
-- `nb-NO`: Norwegian Bokmål (Norway)
-- `nl-NL`: Dutch (Netherlands)
-- `pl-PL`: Polish (Poland)
-- `pt-BR`: Portuguese (Brazil)
-- `ru-RU`: Russian (Russia)
-- `sv-SE`: Swedish (Sweden)
-- `tr-TR`: Turkish (Turkey)
-- `uk-UA`: Ukrainian (Ukraine)
-- `zh-CN`: Chinese (China)
-- `zh-TW`: Chinese (Taiwan)
-
-*Example where we enforce Hungarian language:*
-~~~
-```turnToChart
-year        | apple | pear
------------ | ----- | -----
-2019        | 2     | 3
-2020        | 4     | 6
-
-xAxisType: date
-customLocale: hu-HU
-```
-~~~
-
-### legendOrientation
-| optionKey          | possible values              | behavior when no value   |
-| ---                | ---                          | ---                      |
-| legendOrientation  | `vertical` or `horizontal`   | `horizontal`             |
-
-### legendTitle
-| optionKey          | possible values              | behavior when no value   |
-| ---                | ---                          | ---                      |
-| legendTitle        | any string value             | No title                 |
-
-### xAxisType
-| optionKey      | possible values                     | behavior when no value   |
-| ---            | ---                                 | ---                      |
-| xAxisType      | `number` or `date` or  `category`   | autodetected             |
-
-It supports 3 types of data:
-- `number`: numerical value as a continuous range
-- `date`: date value as a continuous range
-- `category`: string value as a discrete range
-
-*Example where we enforce a `date` type with the normal syntax:*
-~~~
-```turnToChart
-year        | apple | pear
------------ | ----- | -----
-2019        | 2     | 3
-2020        | 4     | 6
-
-xAxisType: date
-```
-~~~
-
-
-Note that you can also pass this option by providing it in square bracket `[]` in the first cell of the table.
-*Example where we enforce a `date` type with the square bracket `[]` syntax:*
-~~~
-```turnToChart
-year [date] | apple | pear
------------ | ----- | -----
-2019        | 2     | 3
-2020        | 4     | 6
-```
-~~~
-
-### xAxisFormat
-| optionKey      | possible values                     | behavior when no value   |
-| ---            | ---                                 | ---                      |
-| xAxisFormat    | see [d3-format](https://github.com/d3/d3-format) for `number` xAxisType and [d3-time-format](https://github.com/d3/d3-time-format) for `date` xAxisType   | none     |
-
-### yAxisFormat
-(see xAxisFormat)
-
-### xAxisNbOfTicks
-| optionKey      | possible values               | behavior when no value   |
-| ---            | ---                           | ---                      |
-| xAxisNbOfTicks | should be a positive number   | autodetected             |
-
-### yAxisNbOfTicks
-(see xAxisNbOfTicks)
-
-### xAxisOrigin
-| optionKey      | possible values                        | behavior when no value       |
-| ---            | ---                                    | ---                          |
-| xAxisOrigin    | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
-
-*Note:* This rule is ignored for `date` and `category` type x-axis.
-
-### yAxisOrigin
-| optionKey      | possible values                        | behavior when no value       |
-| ---            | ---                                    | ---                          |
-| yAxisOrigin    | `from zero` or `from data boundaries`  | Use `from data boundaries`   |
-
-## Units
-The unit for the x-axis is the full string of the first cell of the header.
-The units for the y-axis are the string in parentheses `()` of each subsequent cells of the header.
-
-## Comments
-Any string surrounded by `<!--` and `-->` will be ignored by the plugin.
-
-*Example of a table with comments:*
-~~~
-```turnToChart
-year  <!--this is a comment -->      | apple | pear
------------------------------------  | ----- | -----
-2019                                 | 2     | 3 <!-- another comment --> 
-2020                                 | 4     | 6
-```
-~~~
+To see all the available options, go check the [turn-to-chart library page](https://winbee.github.io/turn-to-chart/)
 
 ## Formulas
 turnToChart is compatible with [Markdown table calculations](https://github.com/oswida/joplin-markdown-calc) plugin. Install it to be able to add formulas in your table.
