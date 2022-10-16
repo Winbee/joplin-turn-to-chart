@@ -1,10 +1,12 @@
 # :memo::curly_loop::bar_chart: Transforms tables to charts
 
-The goal of this Joplin plugin is to render a chart based on a markdown table with minimum configuration.
+The goal of this Joplin plugin is to render an HTML chart based on a `markdown` or `csv` with minimum configuration.
 
-![Category Example](./doc/categoryExample.gif)
+![Category Example](./doc/mdCategoryExample.gif)
 
-![Date Example](./doc/dateExample.gif)
+![Number Example](./doc/mdNumberExample.gif)
+
+![CSV Example](./doc/csvCategoryExample.gif)
 
 # How to install
 
@@ -14,13 +16,13 @@ The goal of this Joplin plugin is to render a chart based on a markdown table wi
 
 # How to use
 
-- In your markdown page, create a table which respects this contraints:
+- In your markdown page, create a `markdown` or `csv` table which respects this contraints:
   - Have at least 2 columns
   - All columns except the first one are numbers.
 - Wrap your table with ` ```turnToChart` and ` ``` `
 - Add options after the table
 
-*Example with extra options:*
+*Example of a markdown table with extra options:*
 ~~~
 ```turnToChart
 year        | apple | pear
@@ -28,6 +30,23 @@ year        | apple | pear
 2019        | 2     | 3
 2020        | 4     | 6
 2021        | 3     | 8
+
+
+xAxisType: date
+xAxisNbOfTicks: 4
+yAxisFormat: ($.0f
+yAxisNbOfTicks: 4
+yAxisOrigin: from zero
+```
+~~~
+
+*Example of a csv table with extra options:*
+~~~
+```turnToChart
+year        , apple , pear
+2019        , 2     , 3
+2020        , 4     , 6
+2021        , 3     , 8
 
 
 xAxisType: date

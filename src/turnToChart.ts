@@ -21,7 +21,8 @@ export default function (context) {
           return defaultRender(tokens, idx, options, env, self);
         }
 
-        return generateHtmlString(token.content);
+        const result = generateHtmlString(token.content);
+        return result.data;
       };
     },
     assets: function () {

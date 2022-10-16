@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-turn-to-chart",
-  "version": "1.8.2",
+  "version": "1.9.1",
   "homepage": "https://github.com/Winbee/joplin-turn-to-chart",
   "scripts": {
     "dist": "webpack --joplin-plugin-config buildMain && webpack --joplin-plugin-config buildExtraScripts && webpack --joplin-plugin-config createArchive",
@@ -33,6 +33,6 @@
     "yargs": "^16.2.0"
   },
   "dependencies": {
-    "turn-to-chart": "^0.0.5"
+    "turn-to-chart": "^1.0.0"
   }
 }
