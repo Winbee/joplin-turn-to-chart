@@ -1,6 +1,8 @@
 {
   "name": "joplin-plugin-turn-to-chart",
-  "version": "1.9.1",
+  "version": "1.9.2",
+  "description": "Joplin plugin which renders an HTML charts based on markdown or csv tables",
+  "author": "Samuel Gagnepain",
   "homepage": "https://github.com/Winbee/joplin-turn-to-chart",
   "scripts": {
     "dist": "webpack --joplin-plugin-config buildMain && webpack --joplin-plugin-config buildExtraScripts && webpack --joplin-plugin-config createArchive",
@@ -9,7 +11,10 @@
   },
   "license": "MIT",
   "keywords": [
+    "markdown",
+    "joplin",
     "joplin-plugin",
+    "csv",
     "table",
     "graph",
     "chart",
