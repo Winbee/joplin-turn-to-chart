@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-turn-to-chart",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "Joplin plugin which renders an HTML charts based on markdown or csv tables",
   "author": "Samuel Gagnepain",
   "homepage": "https://github.com/Winbee/joplin-turn-to-chart",
@@ -38,6 +38,6 @@
     "yargs": "^16.2.0"
   },
   "dependencies": {
-    "turn-to-chart": "^1.0.0"
+    "turn-to-chart": "^1.0.2"
   }
 }
